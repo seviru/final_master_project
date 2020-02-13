@@ -64,18 +64,21 @@ for unigene in unigenes_list:
     ######################
 
     if best_hit is not None: # Check if we have a best hit
-        table_outfile.write(f"{unigene}\t{best_hit}\t{hit_flag}\n")
-
-        if best_hit in best_hit_list: # If we have a best hit, check if we already have saved It's fasta
+        if best_hit in set(best_hit_list): # If we have a best hit, check if we already have saved It's fasta
             fastas_outfile.write(f">{unigene}\n{sequence}\n")
         else: # If we don't, we add it to the list and look for Its info.
             best_hit_list.append(best_hit)
             try: # Try to retrieve the best hit sequence
                 hit_seq = client.sprot.ft.find_one({"AC": best_hit}, {"_id": 0, "SQ": 1})["SQ"]
                 fastas_outfile.write(f">{unigene}\n{sequence}\n>{best_hit} | {hit_flag}\n{hit_seq}\n")
+                seq_found = "Y"
             except TypeError:
                 hit_seq = None
                 fastas_outfile.write(f">{unigene}\n{sequence}\n")
+                seq_found = "N"
+    
+    table_outfile.write(f"{unigene}\t{best_hit}\t{hit_flag}\t{seq_found}\n")
+
 
 table_outfile.close()
 fastas_outfile.close()
