@@ -14,7 +14,7 @@ client = MongoClient("fat01", 27017)
 import sys 
 cluster_name = sys.argv[1]
 unigenes_list = client.gmgc_clusters.members.find_one({"cl": cluster_name}, {"_id": 0, "clm": 1})["clm"]
-best_hit_list = [] # List to store the best hits already found, in order not to repeat the best_hit sequence output
+best_hit_hash = {} # List to store the best hits already found, and if they have a sequence, in order not to repeat the best_hit sequence search
 
 
 ### FILE HANDLING THE OUTPUT FILES ###
@@ -63,11 +63,12 @@ for unigene in unigenes_list:
     #     nt_seq = None  #
     ######################
 
+    seq_found = "N"
     if best_hit is not None: # Check if we have a best hit
-        if best_hit in set(best_hit_list): # If we have a best hit, check if we already have saved It's fasta
+        if best_hit in best_hit_hash: # If we have a best hit, check if we already have saved It's fasta
             fastas_outfile.write(f">{unigene}\n{sequence}\n")
+            seq_found = best_hit_hash[best_hit]
         else: # If we don't, we add it to the list and look for Its info.
-            best_hit_list.append(best_hit)
             try: # Try to retrieve the best hit sequence
                 hit_seq = client.sprot.ft.find_one({"AC": best_hit}, {"_id": 0, "SQ": 1})["SQ"]
                 fastas_outfile.write(f">{unigene}\n{sequence}\n>{best_hit} | {hit_flag}\n{hit_seq}\n")
@@ -75,8 +76,8 @@ for unigene in unigenes_list:
             except TypeError:
                 hit_seq = None
                 fastas_outfile.write(f">{unigene}\n{sequence}\n")
-                seq_found = "N"
-    
+
+            best_hit_hash[best_hit] = seq_found
     table_outfile.write(f"{unigene}\t{best_hit}\t{hit_flag}\t{seq_found}\n")
 
 
