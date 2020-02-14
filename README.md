@@ -4,4 +4,4 @@
 
 ## INDEX
 
-### cluster_info_finder: Folder that contains multiple algorithms to extract data from our MongoDB, as well as the information retrieved stored in different files.
+### - cluster_info_finder: Folder that contains multiple algorithms to extract data from our MongoDB, as well as the information retrieved stored in different files.
