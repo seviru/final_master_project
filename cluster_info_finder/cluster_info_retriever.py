@@ -13,16 +13,17 @@ client = MongoClient("fat01", 27017)
 ### USING THE CLUSTER NAME ###
 import sys 
 cluster_name = sys.argv[1]
+partition_number = sys.argv[2]
 unigenes_list = client.gmgc_clusters.members.find_one({"cl": cluster_name}, {"_id": 0, "clm": 1})["clm"]
 best_hit_hash = {} # List to store the best hits already found, and if they have a sequence, in order not to repeat the best_hit sequence search
 
 
 ### FILE HANDLING THE OUTPUT FILES ###
 from pathlib import Path
-Path("./tables").mkdir(parents=True, exist_ok=True)
-Path("./fastas").mkdir(parents=True, exist_ok=True)
-table_outfile_path = "./tables/" + cluster_name + ".tsv"
-fastas_outfile_path = "./fastas/" + cluster_name + ".fas"
+Path(f"./partitions/{partition_number}/tables").mkdir(parents=True, exist_ok=True)
+Path(f"./partitions/{partition_number}/fastas").mkdir(parents=True, exist_ok=True)
+table_outfile_path = "./partitions/" + partition_number + "/tables/" + cluster_name + ".tsv"
+fastas_outfile_path = "./partitions/" + partition_number + "/fastas/" + cluster_name + ".fas"
 import os
 try:
     os.remove (table_outfile_path)
