@@ -10,7 +10,7 @@ cluster_finder.py: It's a python script which querys to search all the clusters 
 
 cluster_finder.launcher.sh: It's a bash script used to run our cluster_finder.py script in a computation cluster
 		environment.
-		USAGE: (Inside the cluster)$sbatch -o <OUTPUTFILE> t <HOURS:MINS:SECS DEDICATED TO THE TASK> cluster_finder.launcher.sh
+		USAGE: (Inside the cluster)$sbatch -o <OUTPUTFILE> -t <HOURS:MINS:SECS DEDICATED TO THE TASK> cluster_finder.launcher.sh
 
 cluster_info_retriever.py: It's a python script which for a given input cluster name will search for information
 		regarding all the unigenes It contains, creating a FASTA (.fas) file with the sequence of all
@@ -20,9 +20,15 @@ cluster_info_retriever.py: It's a python script which for a given input cluster 
 		USAGE: $python cluster_info_retriever.py <CLUSTER_NAME>
 		NEEDED: Need Python 3.7. If It fails, try: $module load Python/3.7.2-GCCcore-8.2.0
 
+cluster_info_retriever.launcher.sh: It's a script used to run our script cluster_info_retriever.py in a computation
+		cluster environment.
+		USAGE: (Inside the cluster)$batch -t <HOURS:MINS:SECS DEDICATED TO THE JOB> cluster_info_retriever.launcher.py <FILENAME WITH THE CLUSTER NAMES, A.K.A. <OUTFILE>.txt>
+
 <OUTFILE>.txt: We will have a .txt file in this folder containing the clusters list which meet the requirements of
-		the "cluster_finder.py" script.
+		the "cluster_finder.py" script and the partition they will go in the next step.
 
-./fastas/: Folder where we will store the FASTA (.fas) files of all the genes on each cluster from <OUTFILE>.txt .
+./partitions/ : Folder where we will store all the output data. We decided to make partitions in order not to have a vast ammount of files (10.000+) on the same folder.
 
-./tables/: Folder where we will store the TABLE (.tsv) files of all the genes on each cluster from <OUTFILE>.txt .
+./partitions/<PARTITION_NUMBER>/fastas/: Folder where we will store the FASTA (.fas) files of all the genes on each cluster from <OUTFILE>.txt .
+
+./partitions/<PARTITION_NUMBER>/tables/: Folder where we will store the TABLE (.tsv) files of all the genes on each cluster from <OUTFILE>.txt .
