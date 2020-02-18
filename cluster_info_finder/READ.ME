@@ -34,8 +34,8 @@ cluster_info_retriever.launcher.sh: It's a script used to run our script cluster
 
 ./partitions/ : Folder where we will store all the output data. We decided to make partitions in order not to have a vast ammount of files (10.000+) on the same folder.
 
-./partitions/<PARTITION_NUMBER>/fastas/: Folder where we will store the FASTA (.fas) files of all the genes on each cluster from <OUTFILE>.txt .
+./partitions/<PARTITION_NUMBER>/fastas/: Folder where we will store the FASTA (.fas) files of all the genes on each cluster from <OUTFILE>.txt . Besides, the fasta files for each cluster will have the fasta of the hits for the proteins of the cluster, if available.
 
-./partitions/<PARTITION_NUMBER>/tables/: Folder where we will store the TABLE (.tsv) files of all the genes on each cluster from <OUTFILE>.txt .
+./partitions/<PARTITION_NUMBER>/tables/: Folder where we will store the TABLE (.tsv) files of all the genes on each cluster from <OUTFILE>.txt . Each <table> file has 4 columns: Unigene_name, Best_protein_hit_name, best_protein_hit_type (swissprot exact, swissprot best or trembl best in that order of preference), and if best_hit_sequence_available.
 
 
