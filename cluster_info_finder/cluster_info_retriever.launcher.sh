@@ -2,16 +2,14 @@
 
 module load Python/3.7.2-GCCcore-8.2.0;
 
-while IFS=$'\t' read -r -a line; do
-#	echo "Full line is: $line"
-#	echo "First column is: ${line[0]}"
-#	echo "Second column is: ${line[1]}"
-	cluster="${line[0]}";
-	partition="${line[1]}";
-	python cluster_info_retriever.py $cluster $partition
-#	sbatch -t 00:05:00 ./processor.sh $cluster $partition;
-done < "$1" 
+infile="$1";
 
+current=$(tail -n +${SLURM_ARRAY_TASK_ID} "$infile" | head -1);
+cluster=$(echo "$current" | cut -f 1);
+partition=$(echo "$current" | cut -f 2);
 
+python cluster_info_retriever.py $cluster $partition;
 
 ## END
+
+

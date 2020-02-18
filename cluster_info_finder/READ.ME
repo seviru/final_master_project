@@ -22,13 +22,20 @@ cluster_info_retriever.py: It's a python script which for a given input cluster 
 
 cluster_info_retriever.launcher.sh: It's a script used to run our script cluster_info_retriever.py in a computation
 		cluster environment.
-		USAGE: (Inside the cluster)$batch -t <HOURS:MINS:SECS DEDICATED TO THE JOB> cluster_info_retriever.launcher.py <FILENAME WITH THE CLUSTER NAMES, A.K.A. <OUTFILE>.txt>
+		USAGE: (Inside the cluster)$sbatch -a 1-<CLUSTER FILE NUMBER OF LINES> -o <SLURM OUT FOLDER>/%A_%a.out -e <SLURM ERROR FOLDER>/%A_%a.err -t <HOURS:MINS:SECS DEDICATED TO THE JOB> cluster_info_retriever.launcher.sh <FILENAME WITH THE CLUSTER NAMES, A.K.A. <OUTFILE>.txt>
+		NEEDED: Already existing folders <SLURM OUT FOLDER> and <SLURM ERROR FOLDER>
 
 <OUTFILE>.txt: We will have a .txt file in this folder containing the clusters list which meet the requirements of
 		the "cluster_finder.py" script and the partition they will go in the next step.
+
+./<SLURM OUT FOLDER>/: Folder where we will store the output from running in batch our script cluster_info_retriever.launcher.sh . In our case is ./out_and_err/
+
+./<SLURM ERROR FOLDER>/: Folder where we will store the errors from running in batch our script cluster_info_retriever.launcher.sh . In our case is ./out_and_err/
 
 ./partitions/ : Folder where we will store all the output data. We decided to make partitions in order not to have a vast ammount of files (10.000+) on the same folder.
 
 ./partitions/<PARTITION_NUMBER>/fastas/: Folder where we will store the FASTA (.fas) files of all the genes on each cluster from <OUTFILE>.txt .
 
 ./partitions/<PARTITION_NUMBER>/tables/: Folder where we will store the TABLE (.tsv) files of all the genes on each cluster from <OUTFILE>.txt .
+
+

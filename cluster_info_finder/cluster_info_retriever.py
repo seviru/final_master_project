@@ -16,16 +16,17 @@ cluster_name = sys.argv[1]
 partition_number = sys.argv[2]
 unigenes_list = client.gmgc_clusters.members.find_one({"cl": cluster_name}, {"_id": 0, "clm": 1})["clm"]
 best_hit_hash = {} # List to store the best hits already found, and if they have a sequence, in order not to repeat the best_hit sequence search
-
+BASE_PATH = "./partitions"
 
 ### FILE HANDLING THE OUTPUT FILES ###
 from pathlib import Path
-Path(f"./partitions/{partition_number}/tables").mkdir(parents=True, exist_ok=True)
-Path(f"./partitions/{partition_number}/fastas").mkdir(parents=True, exist_ok=True)
-table_outfile_path = "./partitions/" + partition_number + "/tables/" + cluster_name + ".tsv"
-fastas_outfile_path = "./partitions/" + partition_number + "/fastas/" + cluster_name + ".fas"
+Path(f"{BASE_PATH}/{partition_number}/tables").mkdir(parents=True, exist_ok=True)   # Create the folders if they dont exist
+Path(f"{BASE_PATH}/{partition_number}/fastas").mkdir(parents=True, exist_ok=True)
+table_outfile_path = f"{BASE_PATH}/{partition_number}/tables/{cluster_name}.tsv"    # Set the file output path
+table_outfile_path = f"{BASE_PATH}/{partition_number}/fastas/{cluster_name}.fas"
+
 import os
-try:
+try:    # Remove the folders if they exist, to not mix already existing files
     os.remove (table_outfile_path)
     os.remove (fastas_outfile_path)
 except OSError:
