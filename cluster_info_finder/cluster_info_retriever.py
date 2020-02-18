@@ -23,7 +23,7 @@ from pathlib import Path
 Path(f"{BASE_PATH}/{partition_number}/tables").mkdir(parents=True, exist_ok=True)   # Create the folders if they dont exist
 Path(f"{BASE_PATH}/{partition_number}/fastas").mkdir(parents=True, exist_ok=True)
 table_outfile_path = f"{BASE_PATH}/{partition_number}/tables/{cluster_name}.tsv"    # Set the file output path
-table_outfile_path = f"{BASE_PATH}/{partition_number}/fastas/{cluster_name}.fas"
+fastas_outfile_path = f"{BASE_PATH}/{partition_number}/fastas/{cluster_name}.fas"
 
 import os
 try:    # Remove the folders if they exist, to not mix already existing files
