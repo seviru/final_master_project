@@ -7,10 +7,10 @@
 from pymongo import MongoClient
 client = MongoClient("fat01", 27017)
 
-query = client.gmgc_clusters.members.find({"nu": {"$gte": 10}}, {"_id": 0, "cl": 1}).limit(100)
+query = client.gmgc_clusters.members.find({"nu": {"$gte": 3}}, {"_id": 0, "cl": 1})
 
 import sys
-partition_size = 10      # Number of clusters we want to have on each partition
+partition_size = 10000      # Number of clusters we want to have on each partition
 partition_number = 0    # Number of partition we are writing in
 partition_counter = 0   # Partition counter to check we don't put more than needed files on each folder
 
