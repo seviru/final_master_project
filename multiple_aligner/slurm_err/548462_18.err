@@ -1,5 +1,0 @@
-tail: cannot open ‘head_data.txt’ for reading: No such file or directory
-Traceback (most recent call last):
-  File "aligner.py", line 11, in <module>
-    cluster_name = sys.argv[1]
-IndexError: list index out of range
