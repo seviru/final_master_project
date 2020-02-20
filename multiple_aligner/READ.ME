@@ -1,0 +1,13 @@
+###########################################################################################################
+### In this folder we will store our scripts regarding the multiple alignment of the fastas previously  ###
+### extracted from our MongoDB                                                                          ###
+###########################################################################################################
+
+aligner.py: It's a python script which makes a multiple alignment for the fasta of a given cluster name.
+        USAGE: $python aligner.py <CLUSTER NAME> <PARTITION WHERE IT'S STORED>
+        NEEDED: Needs Mafft to align. If It isn't found, try: $module load MAFFT/7.429-GCC-8.2.0-2.31.1-with-extensions
+
+aligner.launcher.sh: It's a script used to run our script aligner.py in a computation cluster environment.
+		USAGE: (Inside the cluster)$sbatch -a 1-<CLUSTER FILE NUMBER OF LINES>%<MAX NUMBER OF TASKS RUNNING AT THE SAME TIME> -o <SLURM OUT FOLDER>/%A_%a.out -e <SLURM ERROR FOLDER>/%A_%a.err -t <HOURS:MINS:SECS DEDICATED TO THE JOB> aligner.launcher.sh <FILENAME WITH THE CLUSTER NAMES AND PARTITIONS>
+		NEEDED: Already existing folders <SLURM OUT FOLDER> and <SLURM ERROR FOLDER>
+

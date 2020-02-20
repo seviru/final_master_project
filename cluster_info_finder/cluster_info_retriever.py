@@ -16,7 +16,7 @@ cluster_name = sys.argv[1]
 partition_number = sys.argv[2]
 unigenes_list = client.gmgc_clusters.members.find_one({"cl": cluster_name}, {"_id": 0, "clm": 1})["clm"]
 best_hit_hash = {} # List to store the best hits already found, and if they have a sequence, in order not to repeat the best_hit sequence search
-BASE_PATH = "./partitions"
+BASE_PATH = "../data/partitions"
 
 ### FILE HANDLING THE OUTPUT FILES ###
 from pathlib import Path
