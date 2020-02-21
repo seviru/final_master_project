@@ -7,8 +7,7 @@
 from pymongo import MongoClient
 client = MongoClient("fat01", 27017)
 
-query = client.gmgc_clusters.members.find({"nu": {"$gte": 3}}, {"_id": 0, "cl": 1})
-
+query = list(client.gmgc_clusters.members.find({"nu": {"$gte": 3}}, {"_id": 0, "cl": 1}))
 import sys
 partition_size = 10000      # Number of clusters we want to have on each partition
 partition_number = 0    # Number of partition we are writing in
