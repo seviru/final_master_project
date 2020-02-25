@@ -1,18 +1,16 @@
-##
-##
 
+### IF WE DONT HAVE THE ERROR AND OUTPUT FOLDERS EXECUTE THESE COMMANDS
 outdir="slurm_out"
 mkdir "$outdir"
 errdir="slurm_err"
 mkdir "$errdir"
 
-## TEST
 
+### CHEATING SHEET OF COMMANDS FOR A TEST RUN
 chunksize=100; # number of clusters to process in each task                                                                                                                                                                                                           
 records=$(wc -l ../data/part_cluster_list.txt | awk '{print $1}'); # total number of clusters to process                                                                                                                                                
 jobs=$(( (records / chunksize) + 1 )); # number of array tasks                                                                                                                                                                                                        
 echo "$records";
-                                                                                                                                                                                                                                                            
 echo "$jobs";
                                                                                                                                                                                                                                                               
 sbatch -a 1-${jobs} --nice=2 \
@@ -26,14 +24,11 @@ sbatch -a 1-${jobs} --nice=2 \
 	cluster_info_retriever.launcher.sh
 
 
-##RUN ALL
-
-
+### CHEATING SHET OF COMMANDS FOR A WHOLE RUN
 chunksize=30; # number of clusters to process in each task                                                                                                                                                                                                           
 records=$(wc -l ../data/cluster_list.txt | awk '{print $1}'); # total number of clusters to process                                                                                                                                                
 jobs=$(( (records / chunksize) + 1 )); # number of array tasks                                                                                                                                                                                                        
 echo "$records";
-                                                                                                                                                                                                                                                            
 echo "$jobs";
                                                                                                                                                                                                                                                               
 sbatch -a 1-${jobs} --nice=2 \
