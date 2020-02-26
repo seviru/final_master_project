@@ -11,3 +11,10 @@ aligner.launcher.sh: It's a script used to run our script aligner.py in a comput
 		USAGE: (Inside the cluster)$sbatch -a 1-<CLUSTER FILE NUMBER OF LINES>%<MAX NUMBER OF TASKS RUNNING AT THE SAME TIME> -o <SLURM OUT FOLDER>/%A_%a.out -e <SLURM ERROR FOLDER>/%A_%a.err -t <HOURS:MINS:SECS DEDICATED TO THE JOB> aligner.launcher.sh <FILENAME WITH THE CLUSTER NAMES AND PARTITIONS>
 		NEEDED: Already existing folders <SLURM OUT FOLDER> and <SLURM ERROR FOLDER>
 
+aligner.sbatch_chunks.sh: It's a script used to run aligner.launcher.sh when we have more than 200.000 jobs to launch at once.
+		NEEDED: <CHUNKSIZE>: Ammount of jobs that we want to send as if they were the same one.
+			<RECORDS>: Number of individual jobs we wouls launch if we didnt group them. $(wc -l ../data/<OUTFILE>.txt | awk '{print $1});
+			<JOBS>: Number of jobs we will launch once we have grouped them. $(((records/chunksize)+1));
+		USAGE: $sbatch -a 1-${<JOBS>} -t <TIME> -o <SLURM OUT FOLDER>/%A_%a.out -e <SLURM EROR FOLDER>/%A_%a.err ./aligner.sbatch_chunks.sh ../data/<OUTFILE>.txt ${<CHUNKSIZE>} ${<RECORDS>} cluster_info_retriever.launcher.sh 
+
+aligner.cheatsheet.sh: Cheatsheet on how to use aligner.sbatch_chunks.sh

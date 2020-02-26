@@ -12,6 +12,8 @@ module load Python/3.7.2-GCCcore-8.2.0;
 ### IF WE USE cluster_info_retriever.sbatch.sh WE HAVE TO UNCOMMENT THIS ###
 cluster="$1";
 partition="$2";
+
+### THIS LINE ALWAYS UNCOMMENTED###
 python cluster_info_retriever.py $cluster $partition;
 
 ## END

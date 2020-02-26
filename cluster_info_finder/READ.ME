@@ -30,7 +30,7 @@ sbatch_chunks.sh: It's a script used to run more than 200.000 jobs at the same t
 		NEEDED: <CHUNKSIZE>: Ammount of jobs that we want to send as if they were the same one.
 			<RECORDS>: Number of individual jobs we wouls launch if we didnt group them. $(wc -l ../data/<OUTFILE>.txt | awk '{print $1});
 			<JOBS>: Number of jobs we will launch once we have grouped them. $(((records/chunksize)+1));
-		USAGE: $sbatch -a 1-${<JOBS>} -t <TIME> -o <SLURM OUT FOLDER>/%A_%a.out -e <SLURM EROR FOLDER>/%A_%a.err ./sbatch_chunks.sh ../data/<OUTFILE>.txt ${<CHUNKSIZE>} ${<RECORDS>} cluster_info_retriever.launcher.sh 
+		USAGE: $sbatch -a 1-${<JOBS>} -t <TIME> -o <SLURM OUT FOLDER>/%A_%a.out -e <SLURM EROR FOLDER>/%A_%a.err ./cluster_info_retriever.sbatch_chunks.sh ../data/<OUTFILE>.txt ${<CHUNKSIZE>} ${<RECORDS>} cluster_info_retriever.launcher.sh 
 
 <OUTFILE>.txt: We will have a .txt file in this folder containing the clusters list which meet the requirements of
 		the "cluster_finder.py" script and the partition they will go in the next step.
@@ -42,4 +42,4 @@ sbatch_chunks.sh: It's a script used to run more than 200.000 jobs at the same t
 cluster_list.py: It's a script which for a given cluster size It outputs all the cluster names that match at least that size.
 		USAGE:$python clusters_list.py <CLUSTER MINIMUM SIZE>
 
-cluster_info_retriever.sbatch.sh: Instructions on how to use cluster_info_retriever.sbatch.sh in more detail.
+cluster_info_retriever.cheatsheet.sh: Instructions on how to use cluster_info_retriever.sbatch_chunks.sh in more detail.
