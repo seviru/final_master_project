@@ -6,4 +6,5 @@
 
 ### - data: Folder that contains all the results from executing the scripts from the different folders.
 ### - cluster_info_finder: Folder that contains multiple algorithms to extract data from our MongoDB, as well as the information retrieved stored in different files.
-###  - multiple_aligner: Folder that contains algorithms to carry out multiple alignments from our <fasta>.fas files.
+### - multiple_aligner: Folder that contains algorithms to carry out multiple alignments from our <fasta>.fas files.
+### - tree_builder: Folder that contains algorithms to carry out phylogenetic tree building from our <alignment>.fas.alg files.
