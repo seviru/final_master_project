@@ -15,6 +15,6 @@ aligner.sbatch_chunks.sh: It's a script used to run aligner.launcher.sh when we 
 		NEEDED: <CHUNKSIZE>: Ammount of jobs that we want to send as if they were the same one.
 			<RECORDS>: Number of individual jobs we wouls launch if we didnt group them. $(wc -l ../data/<OUTFILE>.txt | awk '{print $1});
 			<JOBS>: Number of jobs we will launch once we have grouped them. $(((records/chunksize)+1));
-		USAGE: $sbatch -a 1-${<JOBS>} -t <TIME> -o <SLURM OUT FOLDER>/%A_%a.out -e <SLURM EROR FOLDER>/%A_%a.err ./aligner.sbatch_chunks.sh ../data/<OUTFILE>.txt ${<CHUNKSIZE>} ${<RECORDS>} cluster_info_retriever.launcher.sh 
+		USAGE: $sbatch -a 1-${<JOBS>} -t <TIME> -o <SLURM OUT FOLDER>/%A_%a.out -e <SLURM EROR FOLDER>/%A_%a.err ./aligner.sbatch_chunks.sh ../data/<OUTFILE>.txt ${<CHUNKSIZE>} ${<RECORDS>} aligner.launcher.sh 
 
 aligner.cheatsheet.sh: Cheatsheet on how to use aligner.sbatch_chunks.sh
