@@ -1,0 +1,12 @@
+###########################################################################################################
+### In this folder we will store our scripts regarding the erasing of files which may have been a wrong ###
+### output from certain scripts, such as alignment or tree building.									###
+###########################################################################################################
+
+failure_terminator.py: It's a python script which finds the files which have not an "OK" corresponding one and deletes them.
+		It deletes OK files if they haven't a corresponding file as well.
+		USAGE: $python failure_terminator.py <CLUSTER_NAME> <PARTITION_NAME> <FILETYPE>
+		<FILETYPE>: It can be "alignment" or "trees".
+failure_terminator.launcher: It's a script used to run our failure_terminator.py in a recursive way for a given clusters list.
+		USAGE: $./failure_terminator.py <CLUSTERS_LIST> <FILETYPE>
+		<FILETYPE>: It can be "alignment" or "trees".
