@@ -75,6 +75,11 @@ The script downloads the 'uniprot_sprot-only.tar.gz'
 from the specified RELEASE.
 The file will be downloaded to 'releases/RELEASE'
 RELEASE is usually YEAR_MONTH (e.g. 2018_09).
+The 'uniprot_sprot.dat.gz' file can be extracted from 
+the downloaded file. For example:
+```
+tar -zxf releases/2018_09/uniprot_sprot-only2018_09.tar.gz releases/2018_09/uniprot_sprot.dat.gz
+```
 
 ##### Parse SwissProt annotation data to a JSON file
 
