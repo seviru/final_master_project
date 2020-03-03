@@ -90,7 +90,7 @@ This scripts parses the SwissProt data file and retrieves the "FT"
 annotations, as well as the sequence "SQ" and EC number "EC".
 Example:
 ```
-./retrieve_uniprot_data.py releases/2018_09/uniprot_sprot.dat.gz > sprot.2018_09.json
+retrieve_uniprot_data.py releases/2018_09/uniprot_sprot.dat.gz > sprot.2018_09.json
 
 head -1 sprot.2018_09.json 
 
