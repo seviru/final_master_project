@@ -1,0 +1,6 @@
+UNIPROT_FTP	ftp.uniprot.org
+UNIPROT_RELNOTES	pub/databases/uniprot/relnotes.txt
+UNIPROT_CURRENT	pub/databases/uniprot/knowledgebase
+
+PREV_RELEASES_LIST	prev_releases.list
+RELEASES_DIR	releases
