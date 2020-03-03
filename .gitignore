@@ -2,5 +2,6 @@ data/*
 swissprot_parser/relnotes.txt
 swissprot_parser/releases
 swissprot_parser/releases/*
+swissprot_parser/prev_releases.list
 *.sh~
 *.py~

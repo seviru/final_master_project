@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 ## CPCantalapiedra 2019
 
 import sys, gzip, json, pprint
@@ -22,7 +22,7 @@ def f_parse_infile(in_filename):
     cur_ft_dict = None
     seq_found = False
     
-    with gzip.open(uniprot_filename) as uniprot_file:
+    with gzip.open(uniprot_filename, 'rt') as uniprot_file:
         
         for uniprot_line in uniprot_file:
 
@@ -55,6 +55,7 @@ def f_parse_infile(in_filename):
                     cur_ft_dict["ann"] = cur_ft_dict["ann"]+""+uniprot_data.strip()
 
                 else:
+                    print(uniprot_data)
                     uniprot_data = uniprot_data.strip().split()
                     ft_type = uniprot_data[0]
 

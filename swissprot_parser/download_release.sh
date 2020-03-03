@@ -1,6 +1,8 @@
 #! /bin/bash
 ## CPCantalapiedra 2018
 
+release="$1";
+
 UNIPROT_FTP=$(grep "^UNIPROT_FTP" config | cut -d $'\t' -f 2);
 UNIPROT_RELNOTES=$(grep "^UNIPROT_RELNOTES" config | cut -d $'\t' -f 2);
 UNIPROT_CURRENT=$(grep "^UNIPROT_CURRENT" config | cut -d $'\t' -f 2);
@@ -13,9 +15,9 @@ ncftpget -v "$UNIPROT_FTP" ./ "$UNIPROT_RELNOTES";
 
 RELNOTES=$(basename "$UNIPROT_RELNOTES");
 
-release=$(cat "$RELNOTES" | head -1 | cut -d $' ' -f 3);
+#release=$(cat "$RELNOTES" | head -1 | cut -d $' ' -f 3);
 
-echo "Current release: $release";
+echo "Release to download: $release";
 
 ##
 
