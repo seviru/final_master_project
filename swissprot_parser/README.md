@@ -3,12 +3,8 @@
 Simple scripts to download uniprot releases
 
 CPCantalapiedra 2018
-
-#### DOWNLOAD
-
-```
-git clone https://github.com/Cantalapiedra/uniprot_releases.git
-```
+CPCantalapiedra 2020
+SVRuibal 2020
 
 ##### Dependencies
 
