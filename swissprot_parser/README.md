@@ -34,6 +34,7 @@ cat config
 UNIPROT_FTP	ftp.uniprot.org
 UNIPROT_RELNOTES	pub/databases/uniprot/relnotes.txt
 UNIPROT_CURRENT	pub/databases/uniprot/knowledgebase
+UNIPROT_PREVREL pub/databases/uniprot/previous_releases
 
 PREV_RELEASES_LIST	prev_releases.list
 RELEASES_DIR	releases
@@ -42,7 +43,7 @@ RELEASES_DIR	releases
 ##### Check current uniprot release
 
 ```
-./check_current.sh
+check_current.sh
 ```
 
 The script will report the current release 
@@ -53,12 +54,38 @@ previously or if it is new
 ##### Download current uniprot release
 
 ```
-./download_current.sh
+download_current.sh
 ```
 
 The script just checks which is the current
 release in the Uniprot server, and downloads
-it. It doesn't check whether the release
+its 'uniprot_sprot.data.gz'. 
+It doesn't check whether the release
 has already been downloaded or not.
 The release will be downloaded (overwriting) to
-releases/RELEASE_VERSION
+'releases/RELEASE'.
+RELEASE is usually YEAR_MONTH (e.g. 2018_09).
+
+##### Download a specific uniprot release
+
+```
+download_release.sh RELEASE
+```
+The script downloads the 'uniprot_sprot-only.tar.gz' 
+from the specified RELEASE.
+The file will be downloaded to 'releases/RELEASE'
+RELEASE is usually YEAR_MONTH (e.g. 2018_09).
+
+##### Parse SwissProt annotation data to a JSON file
+
+```
+retrieve_uniprot_data.py uniprot_sprot.dat.gz > JSON_FILE
+```
+This scripts parses the SwissProt data file and retrieves the "FT"
+annotations, as well as the sequence "SQ" and EC number "EC".
+Example:
+./retrieve_uniprot_data.py releases/2018_09/uniprot_sprot.dat.gz > sprot.2018_09.json
+
+head -1 sprot.2018_09.json 
+
+{"ID": "001R_FRG3G", "AC": "Q6GZX4", "FT": [{"ft": "CHAIN", "s": "1", "e": "256", "ann": "/note=\"Putative transcription factor 001R\"/id=\"PRO_0000410512\""}, {"ft": "COMPBIAS", "s": "14", "e": "17", "ann": "/note=\"Poly-Arg\""}], "SQ": "MAFSAEDVLKEYDRRRRMEALLLSLYYPNDRKLLDYKEWSPPRVQVECPKAPVEWNNPPSEKGLIVGHFSGIKYKGEKAQASEVDVNKMCCWVSKFKDAMRRYQGIQTCKIPGKVLSDLDAKIKAYNLTVEGVEGFVRYSRVTKQHVAAFLKELRHSKQYENVNLIHYILTDKRVDIQHLEKDLVKDFKALVESAHRMRQGHMINVKYILYQLLKKHGHGPDGPDILTVKTGSKGVLYDDSFRKIYTDLGWKFTPL"}
