@@ -1,1 +1,4 @@
 data/*
+swissprot_parser/relnotes.txt
+swissprot_parser/releases
+swissprot_parser/releases/*
