@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#module load Python/3.7.2-GCCcore-8.2.0
+module load Python/3.7.2-GCCcore-8.2.0
 
 filetype="$2";
 while IFS= read -r current; do
