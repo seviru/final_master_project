@@ -43,7 +43,8 @@ def f_parse_infile(in_filename):
             elif uniprot_line.startswith(UP_END_FIELD):
                 records_read+=1
                 seq_found = False
-                sys.stderr.write("Records read "+str(records_read)+"\n")
+                if records_read % 1000 == 0:
+                    sys.stderr.write("Records read "+str(records_read)+"\n")
                 yield record
                 
             elif uniprot_line.startswith(UP_FT_FIELD):
@@ -55,12 +56,33 @@ def f_parse_infile(in_filename):
                     cur_ft_dict["ann"] = cur_ft_dict["ann"]+""+uniprot_data.strip()
 
                 else:
-                    print(uniprot_data)
                     uniprot_data = uniprot_data.strip().split()
                     ft_type = uniprot_data[0]
 
-                    ft_dict = {"ft":ft_type, "s":uniprot_data[1],
-                               "e":uniprot_data[2], "ann":" ".join(uniprot_data[3:])}
+                    ft_dict = {}
+                    ft_dict["ft"] = ft_type
+
+                    ft_start = "-"
+                    ft_end = "-"
+                    if len(uniprot_data) > 1:
+                        ft_positions = uniprot_data[1].strip()
+                        if ".." in ft_positions:
+                            ft_start, ft_end = ft_positions.split("..")
+                        else:
+                            ft_start = ft_positions
+                            ft_end = ft_positions
+                        
+                    if len(uniprot_data) > 3:
+                        ft_ann = uniprot_data[3:]
+                    else:
+                        ft_ann = ""
+                        
+                    ft_dict = {"ft":ft_type,
+                               "s":ft_start,
+                               "e":ft_end,
+                               "ann":" ".join(ft_ann)}
+                    # ft_dict = {"ft":ft_type, "s":uniprot_data[1],
+                    #            "e":uniprot_data[2], "ann":" ".join(uniprot_data[3:])}
 
                     if UP_FT_FIELD in record:
                         record[UP_FT_FIELD].append(ft_dict)
