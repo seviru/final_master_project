@@ -84,8 +84,10 @@ retrieve_uniprot_data.py uniprot_sprot.dat.gz > JSON_FILE
 This scripts parses the SwissProt data file and retrieves the "FT"
 annotations, as well as the sequence "SQ" and EC number "EC".
 Example:
+```
 ./retrieve_uniprot_data.py releases/2018_09/uniprot_sprot.dat.gz > sprot.2018_09.json
 
 head -1 sprot.2018_09.json 
 
 {"ID": "001R_FRG3G", "AC": "Q6GZX4", "FT": [{"ft": "CHAIN", "s": "1", "e": "256", "ann": "/note=\"Putative transcription factor 001R\"/id=\"PRO_0000410512\""}, {"ft": "COMPBIAS", "s": "14", "e": "17", "ann": "/note=\"Poly-Arg\""}], "SQ": "MAFSAEDVLKEYDRRRRMEALLLSLYYPNDRKLLDYKEWSPPRVQVECPKAPVEWNNPPSEKGLIVGHFSGIKYKGEKAQASEVDVNKMCCWVSKFKDAMRRYQGIQTCKIPGKVLSDLDAKIKAYNLTVEGVEGFVRYSRVTKQHVAAFLKELRHSKQYENVNLIHYILTDKRVDIQHLEKDLVKDFKALVESAHRMRQGHMINVKYILYQLLKKHGHGPDGPDILTVKTGSKGVLYDDSFRKIYTDLGWKFTPL"}
+```
