@@ -5,3 +5,5 @@ swissprot_parser/releases/*
 swissprot_parser/prev_releases.list
 *.sh~
 *.py~
+*/slurm_err
+*/slurm_out
