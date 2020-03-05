@@ -27,7 +27,7 @@ if os.path.exists(okfile): # If we have an OKfile for our alignment we dont exec
 else:
     if os.path.exists(alignment_outfile): # If we have an alignment file but without OKfile It must be wrong, so we delete It
         os.remove(alignment_outfile)
-    alignment_cmd = f"mafft --auto {fasta_infile} > {alignment_outfile}" # We execute the alignment
+    alignment_cmd = f"mafft --anysymbol --auto {fasta_infile} > {alignment_outfile}" # We execute the alignment
     returncode = subprocess.call(alignment_cmd,shell=True, executable="/bin/bash") 
     if returncode is 0: # If the alignment finishes without an error we create an OKfile
         okfile_outfile = open (okfile, "w")
