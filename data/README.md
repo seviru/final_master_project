@@ -1,11 +1,9 @@
 
 # In this folder we have all the data stored from executing the scripts on our different folders
-________________________________________________________________________________________________
-### DISCLAIMER: If you don't see anything in this folder is due to me not uploading the data files on purpose. If you want to check on them, feel free to contact me ##
+### DISCLAIMER: If you don't see anything in this folder is due to me not uploading the data files on purpose. If you want to check on them, feel free to contact me
+_____________________________________________________________________________________________________________________________
 #### &#60;OUTFILE>.txt (a.k.a. cluster_list.txt):
-We have a .txt file containing the clusters list which meet the requirements of "./cluster_info_finder/cluster_finder.py" script and the partition they will be saved in the next step.
-
-`CREATED BY: cluster_finder.launcher.sh`
+`We have a .txt file containing the clusters list which meet the requirements of "../cluster_info_finder/cluster_finder.py" script and the partition they will be saved in the next step.<br />``CREATED BY: cluster_finder.launcher.sh`
 
 `./partitions/ : Folder where we will store all the output data. We decided to make partitions in order not to have a vast ammount of files (10.000+) on the same folder.
 	CREATED BY: cluster_info_retriever.launcher.sh`
