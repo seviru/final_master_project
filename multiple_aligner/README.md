@@ -1,4 +1,3 @@
-
 # In this folder we will store our scripts regarding the multiple alignment of the fastas previously extracted from our MongoDB
 
 #### aligner.py: 
