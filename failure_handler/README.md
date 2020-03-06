@@ -1,7 +1,5 @@
-###########################################################################################################
-### In this folder we will store our scripts regarding the erasing of files which may have been a wrong ###
-### output from certain scripts, such as alignment or tree building.					###
-###########################################################################################################
+
+# In this folder we will store our scripts regarding the erasing of files which may have been a wrong output from certain scripts, such as alignment or tree building.
 
 failure_terminator.py: It's a python script which finds the files which have not an "OK" corresponding one and deletes them.
 		It deletes OK files if they haven't a corresponding file as well.
