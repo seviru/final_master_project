@@ -1,6 +1,4 @@
-
-# This is the repository where I will regularly upload the advances that I carry out on my practices for the Master of Computational Biology from the Universidad Politecnica de Madrid. The practices are titled "Computational analysis for the identificaction of new diversity with potential functional involvement in a wide catalog of genetic families".
-# The idea is that the results achieved with these experiments will allow me to write my final thesis for this course as well.
+# In this repository we will find all the scripts regarding the preparation of the data that we will use for the consecution of this final master's project.
 
 ![Data preparation flowchart](data_preparation_flowchart.png)
 
