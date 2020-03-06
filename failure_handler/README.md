@@ -1,4 +1,3 @@
-
 # In this folder we will store our scripts regarding the erasing of files which may have been a wrong output from certain scripts, such as alignment or tree building.
 
 ### failure_terminator.py: 
