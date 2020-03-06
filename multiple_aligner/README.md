@@ -1,7 +1,7 @@
-###########################################################################################################
+
 ### In this folder we will store our scripts regarding the multiple alignment of the fastas previously  ###
 ### extracted from our MongoDB                                                                          ###
-###########################################################################################################
+
 
 aligner.py: It's a python script which makes a multiple alignment for the fasta of a given cluster name.
         USAGE: $python aligner.py <CLUSTER NAME> <PARTITION WHERE IT'S STORED>
