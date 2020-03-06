@@ -25,7 +25,10 @@
 	CREATED BT: tree_builder.launcher.sh
 
 <UNIPROT_RELEASE>.tar.gz: Compressed folder with all the specific information of uniprot for the given release.
+	CREATED BY: download_current.sh OR download_release.sh
 
 <UNIPROT_RELEASE>.dat.gz: File with the information regarding the swissprot information of the given release.
+	CREATED BY: Unpacking <UNIPROT_RELEASE>.tar.gz
 
 <UNIPROT_RELEASE>.json: File with the information regarding the swissprot information of the given release in a .json format.
+	CREATED BY: retrieve_uniprot_data.py
