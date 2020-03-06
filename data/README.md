@@ -11,9 +11,6 @@ ________________________________________________________________________________
 #### ./partitions/<PARTITION_NUMBER>/fastas/:
 >Folder where we will store the FASTA (.fas) files of all the genes on each cluster from <OUTFILE>.txt . Besides, the fasta files for each cluster will have the fasta of the hits for the proteins of the cluster, if available.<br />`CREATED BY: cluster_info_retriever.launcher.sh`
 
-#### ./partitions/<PARTITION_NUMBER>/tables/:
-Folder where we will store the TABLE (.tsv) files of all the genes on each cluster from <OUTFILE>.txt . Each <table> file has 4 columns: Unigene_name, Best_protein_hit_name, best_protein_hit_type (swissprot exact, swissprot best or trembl best in that order of preference), and if best_hit_sequence_available.<br />`CREATED BY: cluster_info_retriever.launcher.sh`
-
 #### ./partitions/<PARTITION_NUMBER>/alignments/:
 >Folder where we will store the ALIGNMENT (.alg) files of all the genes on each cluster from <OUTFILE>.txt.<br />`CREATED BY: aligner.launcher.sh`
 
