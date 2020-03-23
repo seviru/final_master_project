@@ -12,4 +12,4 @@ for line in sys.stdin:
     uniprot_new_line = {}
     uniprot_new_line[uniprot_old_line["AC"]] = uniprot_old_line
     del (uniprot_new_line[uniprot_old_line["AC"]]["AC"])
-    sys.stdout.write(f"{uniprot_new_line}\n")
+    print(json.dumps(uniprot_new_line))
