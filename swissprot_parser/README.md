@@ -92,3 +92,20 @@ head -1 sprot.2018_09.json
 
 {"ID": "001R_FRG3G", "AC": "Q6GZX4", "FT": [{"ft": "CHAIN", "s": "1", "e": "256", "ann": "/note=\"Putative transcription factor 001R\"/id=\"PRO_0000410512\""}, {"ft": "COMPBIAS", "s": "14", "e": "17", "ann": "/note=\"Poly-Arg\""}], "SQ": "MAFSAEDVLKEYDRRRRMEALLLSLYYPNDRKLLDYKEWSPPRVQVECPKAPVEWNNPPSEKGLIVGHFSGIKYKGEKAQASEVDVNKMCCWVSKFKDAMRRYQGIQTCKIPGKVLSDLDAKIKAYNLTVEGVEGFVRYSRVTKQHVAAFLKELRHSKQYENVNLIHYILTDKRVDIQHLEKDLVKDFKALVESAHRMRQGHMINVKYILYQLLKKHGHGPDGPDILTVKTGSKGVLYDDSFRKIYTDLGWKFTPL"}
 ```
+
+##### Parse SwissProt annotation data to a JSON file with different format
+```
+retrieve_uniprot_data.py uniprot_sprot.dat.gz | uniprot_file_converter > JSON_FILE
+```
+
+uniprot_file_converter used as a pipeline makes all our entries for the file have
+the structure of {ACCESSION_NUMBER : {ALL_THE_DATA_FOR_THAT_ACCESSION_NUMBER}}
+
+Example:
+```
+retrieve_uniprot_data.py releases/2018_09/uniprot_sprot.dat.gz | uniprot_file_connverter > sprot.2018_09.json
+
+head -1 sprot.2018_09.json 
+
+{'Q6GZX4': {'ID': '001R_FRG3G', 'FT': [{'ft': 'CHAIN', 's': '1', 'e': '1', 'ann': 'Putative transcription factor 001R./FTId=PRO_0000410512.'}, {'ft': 'COMPBIAS', 's': '14', 'e': '14', 'ann': 'Poly-Arg.'}], 'SQ': 'MAFSAEDVLKEYDRRRRMEALLLSLYYPNDRKLLDYKEWSPPRVQVECPKAPVEWNNPPSEKGLIVGHFSGIKYKGEKAQASEVDVNKMCCWVSKFKDAMRRYQGIQTCKIPGKVLSDLDAKIKAYNLTVEGVEGFVRYSRVTKQHVAAFLKELRHSKQYENVNLIHYILTDKRVDIQHLEKDLVKDFKALVESAHRMRQGHMINVKYILYQLLKKHGHGPDGPDILTVKTGSKGVLYDDSFRKIYTDLGWKFTPL'}}
+```
