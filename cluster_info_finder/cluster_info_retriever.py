@@ -73,7 +73,7 @@ for unigene in unigenes_list:
         else: # If we don't, we add it to the list and look for Its info.
             try: # Try to retrieve the best hit sequence
                 hit_seq = client.sprot.ft.find_one({"AC": best_hit}, {"_id": 0, "SQ": 1})["SQ"]
-                fastas_outfile.write(f">{unigene}\n{sequence}\n>{best_hit} | {hit_flag}\n{hit_seq}\n")
+                fastas_outfile.write(f">{unigene}\n{sequence}\n>{best_hit}\n{hit_seq}\n")
                 seq_found = "Y"
             except TypeError:
                 hit_seq = None
