@@ -7,3 +7,4 @@ swissprot_parser/prev_releases.list
 *.py~
 */slurm_err
 */slurm_out
+cluster_info_finder/settings.py

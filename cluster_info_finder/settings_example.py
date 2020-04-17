@@ -1,5 +1,6 @@
 ##
-## CPCantalapiedra 2020
+
+__author__ "CPCantalapiedra 2020"
 
 """Default settings
 
@@ -9,8 +10,8 @@ CL_MIN_SIZE could be any positive integer (or 0), which is
 the minimum size of the clusters to retrieve.
 """
 
-MONGO_HOST = "fat01"
-MONGO_PORT = 27017
-CL_MIN_SIZE = 3
+MONGO_HOST = None # Set here the IP or host name to MongoDB
+MONGO_PORT = None # Set here the port to MongoDB
+CL_MIN_SIZE = 3 # Set here the minimum size (number of members) of the clusters to retrieve
 
 ## END
