@@ -16,10 +16,21 @@ This number can be used, for example, to store clusters data under a tree of dir
 __all__ = [] # no API
 __author__ = "seviru"
 
-import sys
+import sys, argparse
 from pymongo import MongoClient
 
 from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE, CL_PARTITION_SIZE
+
+# Arguments
+
+parser = argparse.ArgumentParser(description='Retrieve clusters with SwissProt hits, and organize them in partitions.')
+parser.add_argument('--min_size', type=int, default=CL_MIN_SIZE,
+                    help='minimum size of a cluster to be reported')
+parser.add_argument('--min_sp_evalue', type=float, default=1e-1,
+                    help='minimum e-value of SwissProt hit to report the cluster')
+parser.add_argument('--partition_size', type=int, default=CL_PARTITION_SIZE,
+                    help='number of clusters to include in a single partition')
+args = parser.parse_args()
 
 # Main
 
@@ -29,7 +40,7 @@ try:
     partition_number = 0    # Number of partition we are writing in
     partition_counter = 0   # Partition counter to check we don't put more than needed files on each folder
 
-    query = list(client.gmgc_clusters.members.find({"nu": {"$gte": CL_MIN_SIZE}}, {"_id": 0, "cl": 1}))
+    query = list(client.gmgc_clusters.members.find({"nu": {"$gte": args.min_size}}, {"_id": 0, "cl": 1}))
 
     for cluster in query:
 
@@ -49,11 +60,13 @@ try:
 
                 # Check if best swissprot hit
                 try:
-                    client.gmgc_unigenes.sprot_best.find_one({"u": unigene}, {"_id": 0, "spb":1})["spb"]["n"]
-                    # TODO: filter by minimum evalue, score or identity
-                    partition_counter += 1
-                    sys.stdout.write(f"{cluster['cl']}\t{partition_number}\n")
-                    break # If the cluster has at least 1 hit of sprot_best we save the cluster and check the next one
+                    spb_hit = client.gmgc_unigenes.sprot_best.find_one({"u": unigene}, {"_id": 0, "spb":1})
+                    spb_n = spb_hit["spb"]["n"]
+                    spb_ev = spb_hit["spb"]["ev"]
+                    if spb_ev <= args.min_sp_evalue:
+                        partition_counter += 1
+                        sys.stdout.write(f"{cluster['cl']}\t{partition_number}\n")
+                        break # If the cluster has at least 1 hit of sprot_best we save the cluster and check the next one
                 
                 except TypeError:
                     continue # If that unigene has not a hit on swissprot we check other unigene of the same cluster
@@ -61,6 +74,7 @@ try:
         if partition_counter == CL_PARTITION_SIZE:
             partition_number += 1
             partition_counter = 0
+            
 finally:
     client.close()
 
