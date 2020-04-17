@@ -8,3 +8,4 @@ swissprot_parser/prev_releases.list
 */slurm_err
 */slurm_out
 cluster_info_finder/settings.py
+*__pycache__*

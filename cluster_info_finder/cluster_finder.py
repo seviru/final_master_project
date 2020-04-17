@@ -3,14 +3,14 @@
 """Retrieve clusters (GMGC families) from MongoDB
 
 Script to find all clusters (GMGC families) 
-with minimum specified size (i.e. number of members or unigenes), 
-retrieve their name and store it on a file.
+with minimum size (i.e. number of members or unigenes), 
+specified as argument or by CL_MIN_SIZE.
 
 Also, we will store only those clusters with hit to SwissProt.
 
-The output is a list of clusters, including for each cluster
-a partition number. Each partition will be shared by as many
-clusters as specified in _PARTITION_SIZE
+In the output, along with the cluster name, a "partition number" is included for each cluster
+Each partition will be shared by as many clusters as specified as argument or in CL_PARTITION_SIZE.
+This number can be used, for example, to store clusters data under a tree of directories.
 """
 
 __all__ = [] # no API
@@ -19,11 +19,7 @@ __author__ = "seviru"
 import sys
 from pymongo import MongoClient
 
-from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE
-
-# Constants
-
-_PARTITION_SIZE = 10000      # Number of clusters we want to have on each partition
+from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE, CL_PARTITION_SIZE
 
 # Main
 
@@ -62,7 +58,7 @@ try:
                 except TypeError:
                     continue # If that unigene has not a hit on swissprot we check other unigene of the same cluster
                 
-        if partition_counter == _PARTITION_SIZE:
+        if partition_counter == CL_PARTITION_SIZE:
             partition_number += 1
             partition_counter = 0
 finally:
