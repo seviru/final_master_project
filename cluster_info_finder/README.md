@@ -34,8 +34,5 @@ USAGE: `python cluster_finder.py [-h] [--min_size MIN_SIZE]
 ### ./&#60;SLURM_ERROR_FOLDER>/:
 >Folder where we will store the errors from running in batch our script cluster_info_retriever.launcher.sh . In our case is ./slurm_err/
 
-### cluster_list.py:
->It's a script which for a given cluster size It outputs all the cluster names that match at least that size.<br />USAGE:`python clusters_list.py <CLUSTER_MINIMUM_SIZE>`
-
 ### cluster_info_retriever.cheatsheet.sh:
 >Instructions on how to use cluster_info_retriever.sbatch_chunks.sh in more detail.
