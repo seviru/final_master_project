@@ -17,7 +17,7 @@
 #       -t 1-12:00:00 \
 #       -o "$outdir"/%A_%a.out \
 #       -e "$errdir"/%A_%a.err \
-#       ./cluster_info_finder.sbatch_chunks.sh \
+#       ./cluster_info_retriever.sbatch_chunks.sh \
 #       ../data/part_cluster_list.txt \
 #       ${chunksize} \
 #	${records} \
@@ -35,7 +35,7 @@ sbatch -a 1-${jobs} --nice=2 \
        -t 1-12:00:00 \
        -o "$outdir"/%A_%a.out \
        -e "$errdir"/%A_%a.err \
-       ./cluster_info_finder.sbatch_chunks.sh \
+       ./cluster_info_retriever.sbatch_chunks.sh \
        ../data/cluster_list.txt \
        ${chunksize} \
 	${records} \
