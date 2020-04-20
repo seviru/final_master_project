@@ -1,8 +1,17 @@
 
 # In this folder we have various scripts and subfolders where we will store plenty of data regarding the parsing of our MongoDB to extract specific information from gene clusters.
 
+### settings_example.py:
+>A python script used as a config file. It must be configured properly and renamed to "settings.py"
+
 ### cluster_finder.py:
->It's a python script which querys to search all the clusters with more than 10 unigenes, and save all of the cluster names in a specified file.<br />USAGE: `python cluster_finder.py > <OUTFILE>`<br />NEEDED: Python 3.7. If It fails, try: `module load Python/3.7.2-GCCcore-8.2.0`
+>It's a python script which querys to search all the clusters with more than 10 unigenes, and save all of the cluster names in a specified file.
+<br />
+USAGE: `python cluster_finder.py [-h] [--min_size MIN_SIZE]
+                         [--min_sp_evalue MIN_SP_EVALUE]
+                         [--partition_size PARTITION_SIZE]
+	> <OUTFILE>`
+<br />NEEDED: Python 3.7. If It fails, try: `module load Python/3.7.2-GCCcore-8.2.0`
 
 ### cluster_finder.launcher.sh:
 >It's a bash script used to run our cluster_finder.py script in a computation cluster environment.<br />USAGE: (Inside the cluster)`sbatch -o <OUTPUTFILE> -t <HOURS:MINS:SECS_DEDICATED_TO_THE_TASK> cluster_finder.launcher.sh`
@@ -24,9 +33,6 @@
 
 ### ./&#60;SLURM_ERROR_FOLDER>/:
 >Folder where we will store the errors from running in batch our script cluster_info_retriever.launcher.sh . In our case is ./slurm_err/
-
-### cluster_list.py:
->It's a script which for a given cluster size It outputs all the cluster names that match at least that size.<br />USAGE:`python clusters_list.py <CLUSTER_MINIMUM_SIZE>`
 
 ### cluster_info_retriever.cheatsheet.sh:
 >Instructions on how to use cluster_info_retriever.sbatch_chunks.sh in more detail.
