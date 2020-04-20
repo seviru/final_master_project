@@ -18,11 +18,9 @@ __author__ = "seviru"
 
 import sys, argparse
 from pymongo import MongoClient
-
 from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE, CL_PARTITION_SIZE
 
-# Arguments
-
+### ARGUMENTS HANDLING
 parser = argparse.ArgumentParser(description='Retrieve clusters with SwissProt hits, and organize them in partitions.')
 parser.add_argument('--min_size', type=int, default=CL_MIN_SIZE,
                     help='minimum size of a cluster to be reported')
@@ -32,8 +30,7 @@ parser.add_argument('--partition_size', type=int, default=CL_PARTITION_SIZE,
                     help='number of clusters to include in a single partition')
 args = parser.parse_args()
 
-# Main
-
+### MAIN
 client = MongoClient(MONGO_HOST, MONGO_PORT)
 
 try:

@@ -1,11 +1,7 @@
-###############################################################
-### Script that gets as input a specific alignment and      ###
-### builds an ete3 tree for It.                             ###
-###############################################################
-
-### MANUALLY DO: module load FastTree/2.1.11-GCC-8.2.0-2.31.1
-### MANUALLY DO: module load Python/3.7.2-GCCcore-8.2.0
-
+"""
+Script that gets as input a specific alignment and
+builds a newick format tree for It.
+"""
 
 ### USING THE CLUSTER NAME ###
 import sys 
@@ -20,6 +16,7 @@ alignment_infile = f"{BASE_PATH}/{partition_number}/alignments/{cluster_name}.fa
 tree_outfile = f"{BASE_PATH}/{partition_number}/trees/{cluster_name}.tree"    # Set the file output path
 okfile = f"{BASE_PATH}/{partition_number}/trees/{cluster_name}.ok"
 
+### MAIN ###
 import os
 import subprocess   # To run bash commands inside Python
 
@@ -43,3 +40,5 @@ else:
                 os.remove(tree_outfile)
             except OSError:
                 pass
+
+## END

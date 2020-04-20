@@ -1,8 +1,9 @@
-###############################################################
-### Script that gets as input a specific gene cluster and   ### 
-### Its partition, and checks if the alignment ir tree file ###
-### has been built correctly.                               ###
-###############################################################
+"""
+Script that gets as input a specific gene cluster and    
+Its partition, and checks if the alignment ir tree file 
+has been built correctly. If It hasn't, It removes the 
+wrongly written files.                               
+"""
 
 ### USING THE CLUSTER NAME ###
 import sys 
@@ -20,7 +21,7 @@ else:
     sys.exit("Wrong format file to erase")
 okfile = f"{BASE_PATH}/{partition_number}/{filetype}/{cluster_name}.ok"
 
-
+### MAIN ### 
 import os
 
 if (os.path.exists(okfile) and os.path.exists(check_infile)) : # If both files are correct we delete none
@@ -31,3 +32,5 @@ elif os.path.exists(okfile):
     os.remove(okfile)
 else: # If there is none file we exit
     sys.exit(0)
+
+## END

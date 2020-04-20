@@ -1,10 +1,8 @@
-###############################################################
-### Script that gets as input a specific gene cluster and   ### 
-### Its partition, and makes a multiple alignment for the   ###
-### fasta file of that cluster.                             ###
-###############################################################
-
-### MANUALLY DO: module load MAFFT/7.429-GCC-8.2.0-2.31.1-with-extensions
+"""
+Script that gets as input a specific gene cluster and
+Its partition, and makes a multiple alignment for the
+fasta file of that cluster.
+"""
 
 ### USING THE CLUSTER NAME ###
 import sys 
@@ -19,6 +17,7 @@ fasta_infile = f"{BASE_PATH}/{partition_number}/fastas/{cluster_name}.fas"
 alignment_outfile = f"{BASE_PATH}/{partition_number}/alignments/{cluster_name}.fas.alg"    # Set the file output path
 okfile = f"{BASE_PATH}/{partition_number}/alignments/{cluster_name}.ok"
 
+### MAIN ###
 import os
 import subprocess   # To run bash commands inside Python
 
@@ -42,3 +41,5 @@ else:
                 os.remove(alignment_outfile)
             except OSError:
                 pass
+
+## END

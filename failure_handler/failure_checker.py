@@ -1,8 +1,8 @@
-###############################################################
-### Script that gets as input a specific gene cluster and   ### 
-### Its partition, and checks if the alignment or tree file ###
-### has been built correctly, and makes a report.           ###
-###############################################################
+"""
+Script that gets as input a specific gene cluster and    
+Its partition, and checks if the alignment or tree file 
+has been built correctly, and makes a report.           
+"""
 
 ### USING THE CLUSTER NAME ###
 import sys 
@@ -20,7 +20,7 @@ else:
     sys.exit("Wrong format file to erase")
 okfile = f"{BASE_PATH}/{partition_number}/{filetype}/{cluster_name}.ok"
 
-
+### MAIN ###
 import os
 import sys
 sys.stdout.write(f"cluster\tpartition\tokfile\t{filetype}_files\n")
@@ -33,3 +33,5 @@ elif os.path.exists(okfile):
     sys.stdout.write(f"{cluster_name}\t{partition_number}\tY\tN\n")
 else: # If there is none file we exit
     sys.stdout.write(f"{cluster_name}\t{partition_number}\tN\tN\n")
+
+## END
