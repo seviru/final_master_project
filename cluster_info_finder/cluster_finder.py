@@ -13,12 +13,13 @@ Each partition will be shared by as many clusters as specified as argument or in
 This number can be used, for example, to store clusters data under a tree of directories.
 """
 
-__all__ = [] # no API
-__author__ = "seviru"
-
 import sys, argparse
 from pymongo import MongoClient
 from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE, CL_PARTITION_SIZE
+
+__all__ = [] # no API
+__author__ = "seviru"
+
 
 ### ARGUMENTS HANDLING
 parser = argparse.ArgumentParser(description='Retrieve clusters with SwissProt hits, and organize them in partitions.')
@@ -29,6 +30,7 @@ parser.add_argument('--min_sp_evalue', type=float, default=1e-1,
 parser.add_argument('--partition_size', type=int, default=CL_PARTITION_SIZE,
                     help='number of clusters to include in a single partition')
 args = parser.parse_args()
+
 
 ### MAIN
 client = MongoClient(MONGO_HOST, MONGO_PORT)
@@ -74,5 +76,6 @@ try:
             
 finally:
     client.close()
+
 
 ## END

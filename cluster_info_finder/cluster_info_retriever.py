@@ -1,49 +1,49 @@
 #!/usr/bin/env python3
-"""
-Script that gets as input a specific gene cluster and It
+"""Script that gets as input a specific gene cluster and It
 extracts all the needed info from that cluster, such as
 fasta sequences for all the members of that cluster and
 a table with different information of the hits of those cluster
 sequences to uniprot.
 """
+import sys 
+import os
+from pymongo import MongoClient
+from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE, CL_PARTITION_SIZE
+from pathlib import Path
 
 __all__ = [] # no API
 __author__ = "seviru"
 
-### START THE MONGO CLIENT ###
-# MANUALLY DO THIS: module load Python/3.7.2-GCCcore-8.2.0
-from pymongo import MongoClient
-from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE, CL_PARTITION_SIZE
 
+### START THE MONGO CLIENT ###
 client = MongoClient(MONGO_HOST, MONGO_PORT)
 
 
 ### USING THE CLUSTER NAME ###
-import sys 
 cluster_name = sys.argv[1]
 partition_number = sys.argv[2]
 unigenes_list = client.gmgc_clusters.members.find_one({"cl": cluster_name}, {"_id": 0, "clm": 1})["clm"]
 best_hit_hash = {} # List to store the best hits already found, and if they have a sequence, in order not to repeat the best_hit sequence search
 BASE_PATH = "../data/partitions"
 
+
 ### FILE HANDLING THE OUTPUT FILES ###
-from pathlib import Path
 Path(f"{BASE_PATH}/{partition_number}/tables").mkdir(parents=True, exist_ok=True)   # Create the folders if they dont exist
 Path(f"{BASE_PATH}/{partition_number}/fastas").mkdir(parents=True, exist_ok=True)
 table_outfile_path = f"{BASE_PATH}/{partition_number}/tables/{cluster_name}.tsv"    # Set the file output path
 fastas_outfile_path = f"{BASE_PATH}/{partition_number}/fastas/{cluster_name}.fas"
 
-import os
 try:    # Remove the folders if they exist, to not mix already existing files
-    os.remove (table_outfile_path)
-    os.remove (fastas_outfile_path)
+    os.remove(table_outfile_path)
+    os.remove(fastas_outfile_path)
 except OSError:
     try:
-        os.remove (fastas_outfile_path)
+        os.remove(fastas_outfile_path)
     except OSError:
         pass
-table_outfile = open (table_outfile_path, "w")
-fastas_outfile = open (fastas_outfile_path, "w")
+table_outfile = open(table_outfile_path, "w")
+fastas_outfile = open(fastas_outfile_path, "w")
+
 
 ### MAIN ###
 try:
@@ -120,5 +120,6 @@ finally:
     table_outfile.close()
     fastas_outfile.close()
     client.close()
+
 
 ## END
