@@ -6,7 +6,7 @@ It's a python script which makes a multiple alignment for the fasta of a given c
 ```
 python aligner.py <CLUSTER_NAME> <PARTITION_WHERE_IT'S_STORED>
 ```
-<br />NEEDED: Needs Mafft to align. If It isn't found, try: 
+NEEDED: Needs Mafft to align. If It isn't found, try: 
 ```
 module load MAFFT/7.429-GCC-8.2.0-2.31.1-with-extensions
 ```
@@ -22,7 +22,7 @@ sbatch  -a 1-<CLUSTER_FILE_NUMBER_OF_LINES>%<MAX_NUMBER_OF_TASKS_RUNNING_AT_THE_
         aligner.launcher.sh 
         <FILENAME_WITH_THE_CLUSTER_NAMES_AND_PARTITIONS>
 ```
-<br />NEEDED: Already existing folders &#60;SLURM OUT FOLDER> and &#60;SLURM ERROR FOLDER>
+NEEDED: Already existing folders &#60;SLURM OUT FOLDER> and &#60;SLURM ERROR FOLDER>
 
 #### aligner.sbatch_chunks.sh:
 It's a script used to run aligner.launcher.sh when we have more than 200.000 jobs to launch at once.
