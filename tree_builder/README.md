@@ -20,7 +20,7 @@ sbatch  -a 1-<CLUSTER_FILE_NUMBER_OF_LINES>%<MAX_NUMBER_OF_TASKS_RUNNING_AT_THE_
         tree_builder.launcher.sh 
         <FILENAME_WITH_THE_CLUSTER_NAMES_AND_PARTITIONS>
 ```
-<br />NEEDED: Already existing folders &#60;SLURM_OUT_FOLDER> and &#60;SLURM_ERROR_FOLDER>
+NEEDED: Already existing folders &#60;SLURM_OUT_FOLDER> and &#60;SLURM_ERROR_FOLDER>
 
 #### tree_builder.sbatch_chunks.sh:
 It's a script used to run tree_builder.launcher.sh when we have more than 200.000 jobs to launch at once.
