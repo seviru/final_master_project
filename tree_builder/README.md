@@ -7,7 +7,7 @@ It's a python script which builds a tree for the alignment of a given cluster na
 python tree_builder.py  <CLUSTER_NAME> 
                         <PARTITION_WHERE_IT'S_STORED>`
 ```
-<br />NEEDED: Needs FastTree to align. If It isn't found, try: `module load FastTree/2.1.11-GCC-8.2.0-2.31.1`
+NEEDED: Needs FastTree to align. If It isn't found, try: `module load FastTree/2.1.11-GCC-8.2.0-2.31.1`
 
 #### tree_builder.launcher.sh:
 It's a script used to run our script tree_builder.py in a computation cluster environment.
