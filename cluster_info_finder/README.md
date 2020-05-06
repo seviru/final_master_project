@@ -13,7 +13,7 @@ python cluster_finder.py [-h] [--min_size MIN_SIZE]
                          [--partition_size PARTITION_SIZE]
 			 > <OUTFILE>
 ```
-<br />NEEDED: Python 3.7. If It fails, try: 
+NEEDED: Python 3.7. If It fails, try: 
 ```
 module load Python/3.7.2-GCCcore-8.2.0`
 ```
@@ -32,7 +32,7 @@ It's a python script which for a given input cluster name will search for inform
 ```
 python cluster_info_retriever.py <CLUSTER_NAME>`
 ```
-<br />NEEDED: Python 3.7. If It fails, try: 
+NEEDED: Python 3.7. If It fails, try: 
 ```
 module load Python/3.7.2-GCCcore-8.2.0`
 ```
@@ -47,7 +47,7 @@ sbatch  -a 1-<CLUSTER_FILE_NUMBER_OF_LINES>
 	cluster_info_retriever.launcher.sh 
 	<FILENAME_WITH_THE_CLUSTER_NAMES_,_A.K.A._<OUTFILE>.txt>`
 ```
-<br />NEEDED: Already existing folders &#60;SLURM_OUT_FOLDER> and &#60;SLURM_ERROR_FOLDER>
+NEEDED: Already existing folders &#60;SLURM_OUT_FOLDER> and &#60;SLURM_ERROR_FOLDER>
 
 ### sbatch_chunks.sh: 
 It's a script used to run more than 200.000 jobs at the same time in our slurm computational cluster. It's a little more complex to call than the other ones, since It needs more variables.<br />NEEDED: 
