@@ -8,7 +8,7 @@ python failure_terminator.py  <CLUSTER_NAME>
                               <PARTITION_NAME> 
                               <FILETYPE>`
 ```
-<br />&#60;FILETYPE>: It can be `alignments` or `trees`.
+- &#60;FILETYPE>: It can be `alignments` or `trees`.
 
 ### failure_terminator.launcher.sh: 
 It's a script used to run our failure_terminator.py in a recursive way for a given clusters list.
@@ -17,7 +17,7 @@ It's a script used to run our failure_terminator.py in a recursive way for a giv
 ./failure_terminator.launcher.sh  <CLUSTERS_LIST> 
                                   <FILETYPE>`
 ```
-<br />&#60;FILETYPE>: It can be `alignments` or `trees`.
+- &#60;FILETYPE>: It can be `alignments` or `trees`.
 
 ### failure_checker.py: 
 It's a python script which makes a report in a text file of the cluster family and if the alignment or tree files have correctly generated.
@@ -27,7 +27,7 @@ python failure_checker.py <CLUSTER_NAME>
                           <PARTITION_NAME> 
                           <FILETYPE>`
 ```
-<br />&#60;FILETYPE>: It can be `alignments` or `trees`.
+- &#60;FILETYPE>: It can be `alignments` or `trees`.
 
 ### failure_checker.launcher.sh:
 It's a script used to run our failure_checker.oy in a recursive way for a given clusters list.
@@ -36,4 +36,4 @@ It's a script used to run our failure_checker.oy in a recursive way for a given 
 ./failure_checker.launcher.sh <CLUSTERS_LIST> 
                               <FILETYPE>`
 ```
-<br />&#60;FILETYPE>: It can be `alignments` or `trees`.
+- &#60;FILETYPE>: It can be `alignments` or `trees`.
