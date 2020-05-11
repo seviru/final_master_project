@@ -28,7 +28,7 @@ It's a script used to run `tree_builder.launcher.sh` when we have more than 200.
 - `<CHUNKSIZE>`: Ammount of jobs that we want to send as if they were the same one.
 - `<RECORDS>`: Number of individual jobs we wouls launch if we didnt group them. `(wc -l ../data/<OUTFILE>.txt | awk '{print $1});`
 - `<JOBS>`: Number of jobs we will launch once we have grouped them. `((records/chunksize)+1);`
-USAGE: 
+<br />USAGE: 
 ```
 sbatch  -a 1-${<JOBS>} 
         -t <TIME> 
