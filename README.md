@@ -2,8 +2,6 @@
 
 ![Data preparation flowchart](data_preparation_flowchart.png)
 
-## INDEX
-
 ### data
 Folder that contains all the results from executing the scripts from the different folders.
 
