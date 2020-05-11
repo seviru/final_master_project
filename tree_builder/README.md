@@ -20,14 +20,14 @@ sbatch  -a 1-<CLUSTER_FILE_NUMBER_OF_LINES>%<MAX_NUMBER_OF_TASKS_RUNNING_AT_THE_
         tree_builder.launcher.sh 
         <FILENAME_WITH_THE_CLUSTER_NAMES_AND_PARTITIONS>
 ```
-NEEDED: Already existing folders &#60;SLURM_OUT_FOLDER> and &#60;SLURM_ERROR_FOLDER>
+NEEDED: Already existing folders `<SLURM_OUT_FOLDER>` and `<SLURM_ERROR_FOLDER>`
 
 #### tree_builder.sbatch_chunks.sh:
 It's a script used to run tree_builder.launcher.sh when we have more than 200.000 jobs to launch at once.
 <br />NEEDED: 
-- &#60;CHUNKSIZE>: Ammount of jobs that we want to send as if they were the same one.
-- &#60;RECORDS>: Number of individual jobs we wouls launch if we didnt group them. `(wc -l ../data/<OUTFILE>.txt | awk '{print $1});`
-- &#60;JOBS>: Number of jobs we will launch once we have grouped them. `((records/chunksize)+1);`
+- `<CHUNKSIZE>`: Ammount of jobs that we want to send as if they were the same one.
+- `<RECORDS>`: Number of individual jobs we wouls launch if we didnt group them. `(wc -l ../data/<OUTFILE>.txt | awk '{print $1});`
+- `<JOBS>`: Number of jobs we will launch once we have grouped them. `((records/chunksize)+1);`
 <br />USAGE: 
 ```
 sbatch  -a 1-${<JOBS>} 
@@ -41,4 +41,4 @@ sbatch  -a 1-${<JOBS>}
 ```
 
 #### tree_builder.cheatsheet.sh:
-Cheatsheet on how to use aligner.sbatch_chunks.sh
+Cheatsheet on how to use `aligner.sbatch_chunks.sh`
