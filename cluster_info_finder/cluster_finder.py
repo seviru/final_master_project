@@ -15,7 +15,7 @@ This number can be used, for example, to store clusters data under a tree of dir
 
 import sys, argparse
 from pymongo import MongoClient
-from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE, CL_PARTITION_SIZE
+from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE, CL_PARTITION_SIZE, CL_MIN_SP_EVALUE
 
 __all__ = [] # no API
 __author__ = "seviru"
@@ -25,7 +25,7 @@ __author__ = "seviru"
 parser = argparse.ArgumentParser(description='Retrieve clusters with SwissProt hits, and organize them in partitions.')
 parser.add_argument('--min_size', type=int, default=CL_MIN_SIZE,
                     help='minimum size of a cluster to be reported')
-parser.add_argument('--min_sp_evalue', type=float, default=1e-1,
+parser.add_argument('--min_sp_evalue', type=float, default=CL_MIN_SP_EVALUE,
                     help='minimum e-value of SwissProt hit to report the cluster')
 parser.add_argument('--partition_size', type=int, default=CL_PARTITION_SIZE,
                     help='number of clusters to include in a single partition')
