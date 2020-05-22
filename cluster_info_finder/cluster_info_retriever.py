@@ -8,7 +8,7 @@ sequences to uniprot.
 import sys 
 import os
 from pymongo import MongoClient
-from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SIZE, CL_PARTITION_SIZE
+from settings import MONGO_HOST, MONGO_PORT, CL_MIN_SP_EVALUE
 from pathlib import Path
 
 __all__ = [] # no API
@@ -22,6 +22,9 @@ client = MongoClient(MONGO_HOST, MONGO_PORT)
 ### USING THE CLUSTER NAME ###
 cluster_name = sys.argv[1]
 partition_number = sys.argv[2]
+
+sys.stderr.write(f"Running cluster {cluster_name} at partition {partition_number}\n")
+
 unigenes_list = client.gmgc_clusters.members.find_one({"cl": cluster_name}, {"_id": 0, "clm": 1})["clm"]
 best_hit_hash = {} # List to store the best hits already found, and if they have a sequence, in order not to repeat the best_hit sequence search
 BASE_PATH = "../data/partitions"
@@ -105,15 +108,21 @@ try:
                 fastas_outfile.write(f">{unigene}\n{sequence}\n")
                 seq_found = best_hit_hash[hit_name]
             else: # If we don't, we add it to the list and look for Its info.
-                try:
-                    hit_seq = client.sprot.ft.find_one({"AC": hit_name}, {"_id": 0, "SQ": 1})["SQ"]
-                    fastas_outfile.write(f">{unigene}\n{sequence}\n>{hit_name}\n{hit_seq}\n")
-                    seq_found = "Y"
-                except TypeError:
-                    hit_seq = None
-                    fastas_outfile.write(f">{unigene}\n{sequence}\n")
+                if evalue == "-" or float(evalue) <= CL_MIN_SP_EVALUE:
+                    try:
+                        hit_seq = client.sprot.ft.find_one({"AC": hit_name}, {"_id": 0, "SQ": 1})["SQ"]
+                        fastas_outfile.write(f">{unigene}\n{sequence}\n>{hit_name}\n{hit_seq}\n")
+                        seq_found = "Y"
+                    except TypeError:
+                        hit_seq = None
+                        fastas_outfile.write(f">{unigene}\n{sequence}\n")
+                else:
+                    fastas_outfile.write(f">{unigene}\n{sequence}\n")                    
 
                 best_hit_hash[hit_name] = seq_found
+        else:
+            fastas_outfile.write(f">{unigene}\n{sequence}\n")
+            
         table_outfile.write(f"{unigene}\t{suffix}\t{hit_flag}\t{hit_name}\t{evalue}\t{score}\t{identity}\t{query_covery}\t{target_covery}\n")
 
 finally:
