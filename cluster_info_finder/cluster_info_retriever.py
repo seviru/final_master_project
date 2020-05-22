@@ -26,7 +26,7 @@ partition_number = sys.argv[2]
 sys.stderr.write(f"Running cluster {cluster_name} at partition {partition_number}\n")
 
 unigenes_list = client.gmgc_clusters.members.find_one({"cl": cluster_name}, {"_id": 0, "clm": 1})["clm"]
-best_hit_hash = {} # List to store the best hits already found, and if they have a sequence, in order not to repeat the best_hit sequence search
+best_hit_hash = set() # List to store the best hits already found, and if they have a sequence, in order not to repeat the best_hit sequence search
 BASE_PATH = "../data/partitions"
 
 
@@ -102,24 +102,21 @@ try:
         #     nt_seq = None  #
         ######################
 
-        seq_found = "N"
         if best_hit is not None:
             if hit_name in best_hit_hash: # If we have a best hit, check if we already have saved It's fasta
                 fastas_outfile.write(f">{unigene}\n{sequence}\n")
-                seq_found = best_hit_hash[hit_name]
             else: # If we don't, we add it to the list and look for Its info.
                 if evalue == "-" or float(evalue) <= CL_MIN_SP_EVALUE:
                     try:
                         hit_seq = client.sprot.ft.find_one({"AC": hit_name}, {"_id": 0, "SQ": 1})["SQ"]
                         fastas_outfile.write(f">{unigene}\n{sequence}\n>{hit_name}\n{hit_seq}\n")
-                        seq_found = "Y"
+                        best_hit_hash.add(hit_name)
                     except TypeError:
                         hit_seq = None
                         fastas_outfile.write(f">{unigene}\n{sequence}\n")
                 else:
                     fastas_outfile.write(f">{unigene}\n{sequence}\n")                    
 
-                best_hit_hash[hit_name] = seq_found
         else:
             fastas_outfile.write(f">{unigene}\n{sequence}\n")
             
